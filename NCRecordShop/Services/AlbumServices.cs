@@ -23,15 +23,15 @@ namespace NCRecordShop.Services
         }
         public Album AddAlbum(Album album)
         {
-            throw new NotImplementedException();
+            return _repository.AddAlbum(album);
         }
         public Album UpdateAlbum(int id, Album album)
         {
-            throw new NotImplementedException();
+            return _repository.UpdateAlbum(id, album);
         }
         public bool DeleteAlbum(int id)
         {
-            throw new NotImplementedException();
+            return _repository.DeleteAlbum(id);
         }
     }
 }

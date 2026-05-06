@@ -55,5 +55,63 @@ public class AlbumServiceTests
         Assert.That(result.Title, Is.EqualTo("Son of Spergy"));
 
     }
+    [Test]
+    public void AddAlbum_Returns_AlbumAdded()
+    {
+        var album = new Album
+
+        {
+            Id = 1,
+            Title = "Son of Spergy",
+            Artist = "Daniel Caesar",
+            ReleaseYear = 2025,
+            Genre = Genre.RnB,
+            Quantity = 4
+        };
+        _mockRepo.Setup(r => r.AddAlbum(album)).Returns(album);
+        //act
+         var result = _service.AddAlbum(album);
+        //assert
+        Assert.That(result, Is.EqualTo(album));
+    }
+    [Test]
+    public void UpdateAlbum_Returns_UpdatedAlbum()
+    {
+        var Ualbum = new Album
+
+        {
+            Id = 1,
+            Title = "Son of Spergy",
+            Artist = "Daniel Caesar",
+            ReleaseYear = 2025,
+            Genre = Genre.RnB,
+            Quantity = 3
+        };
+        _mockRepo.Setup(r => r.UpdateAlbum(1, Ualbum)).Returns(Ualbum);
+        //act
+        var result = _service.UpdateAlbum(1,Ualbum);
+        //assert
+        Assert.That(result.Title, Is.EqualTo("Son of Spergy"));
+    }
+    [Test]
+    public void DeleteAlbum_Returns_True()
+    {
+        var album = new Album
+
+        {
+            Id = 1,
+            Title = "Son of Spergy",
+            Artist = "Daniel Caesar",
+            ReleaseYear = 2025,
+            Genre = Genre.RnB,
+            Quantity = 4
+        };
+        _mockRepo.Setup(r => r.DeleteAlbum(1)).Returns(true);
+        //act
+        var result = _service.DeleteAlbum(1);
+        //assert
+        Assert.That(result, Is.True);
+    }
+
 }
 
