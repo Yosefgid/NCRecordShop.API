@@ -21,11 +21,17 @@ namespace NCRecordShop.Repositories
         }
         public Album AddAlbum(Album album)
         {
-            throw new NotImplementedException();
+            _context.Albums.Add(album);
+            _context.SaveChanges();
+            return album;
         }
         public Album UpdateAlbum(int id, Album album)
         {
-            throw new NotImplementedException();
+            var currAlbum = GetAlbumById(id);
+            album.Id = currAlbum.Id;
+            _context.Entry(currAlbum).CurrentValues.SetValues(album);
+            _context.SaveChanges();
+            return currAlbum;
         }
        public bool DeleteAlbum(int id)
         {

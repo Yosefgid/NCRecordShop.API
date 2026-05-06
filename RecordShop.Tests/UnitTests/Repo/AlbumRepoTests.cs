@@ -72,4 +72,50 @@ public class AlbumRepoTests
         Assert.That(result.Title, Is.EqualTo("Son of Spergy"));
 
     }
+    [Test]
+    public void AddAlbum_Returns_AlbumAdded()
+    {
+        //Arrange
+        var album = new Album
+        {
+            Title = "Son of Spergy",
+            Artist = "Daniel Caesar",
+            ReleaseYear = 2025,
+            Genre = Genre.RnB,
+            Quantity = 4
+        };
+
+        //Act
+        var result = _repository.AddAlbum(album);
+        Assert.That(result.Title, Is.EqualTo("Son of Spergy"));
+    }
+    [Test]
+    public void UpdateAlbum_Returns_UpdateAlbum()
+    {
+
+        //Arrange
+        var album = new Album
+        {
+            Title = "Son of Spergy",
+            Artist = "Daniel Caesar",
+            ReleaseYear = 2025,
+            Genre = Genre.RnB,
+            Quantity = 4
+        };
+
+        _context.Albums.Add(album);
+        _context.SaveChanges();
+        var uAlbum = new Album
+        {
+            Title = "Freudian",
+            Artist = "Daniel Caesar",
+            ReleaseYear = 2017,
+            Genre = Genre.RnB,
+            Quantity = 4
+        };
+        //Act
+        var result = _repository.UpdateAlbum(album.Id, uAlbum);
+        Assert.That(result.Title, Is.EqualTo("Freudian"));
+
+    }
 }
