@@ -13,7 +13,7 @@ namespace NCRecordShop.Repositories
 
         public List<Album> GetAllAlbums()
         {
-            throw new NotImplementedException();
+            return _context.Albums.ToList();
         }
         public  Album GetAlbumById(int id)
         {
