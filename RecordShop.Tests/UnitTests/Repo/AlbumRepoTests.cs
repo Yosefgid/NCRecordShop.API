@@ -49,4 +49,27 @@ public class AlbumRepoTests
         Assert.That(result, Is.Not.Empty);
 
     }
+
+    [Test] 
+    public void GetAlbumById_Returns_CorrectAlbum()
+    {
+
+        //Arrange
+        var album = new Album
+        {
+            Title = "Son of Spergy",
+            Artist = "Daniel Caesar",
+            ReleaseYear = 2025,
+            Genre = Genre.RnB,
+            Quantity = 4
+        };
+
+        _context.Albums.Add(album);
+        _context.SaveChanges();
+        //Act
+        var result = _repository.GetAlbumById(album.Id);
+        //Assert
+        Assert.That(result.Title, Is.EqualTo("Son of Spergy"));
+
+    }
 }

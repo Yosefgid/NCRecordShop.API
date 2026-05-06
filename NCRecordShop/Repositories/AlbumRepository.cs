@@ -17,7 +17,7 @@ namespace NCRecordShop.Repositories
         }
         public  Album GetAlbumById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Albums.FirstOrDefault(a => a.Id == id);
         }
         public Album AddAlbum(Album album)
         {
