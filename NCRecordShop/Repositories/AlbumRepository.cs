@@ -37,6 +37,7 @@ namespace NCRecordShop.Repositories
         {
             var currAlbum = GetAlbumById(id);
             _context.Albums.Remove(currAlbum);
+            _context.SaveChanges();
             return true;
         }
     }

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NCRecordShop.Data;
 using NCRecordShop.Repositories;
+using NCRecordShop.Services;
 namespace NCRecordShop
 {
     public class Program
@@ -28,6 +29,7 @@ namespace NCRecordShop
             }
 
             builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
+            builder.Services.AddScoped<IAlbumServices, AlbumServices>();
 
             var app = builder.Build();
 
