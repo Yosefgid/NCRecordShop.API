@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NCRecordShop.Data;
+using NCRecordShop.Repositories;
 namespace NCRecordShop
 {
     public class Program
@@ -25,6 +26,8 @@ namespace NCRecordShop
             {
                 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             }
+
+            builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 
             var app = builder.Build();
 
