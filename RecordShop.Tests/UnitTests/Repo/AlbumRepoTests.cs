@@ -118,4 +118,25 @@ public class AlbumRepoTests
         Assert.That(result.Title, Is.EqualTo("Freudian"));
 
     }
+    [Test]
+    public void DeleteAlbum_ReturnsTrue()
+    {
+
+        //Arrange
+        var album = new Album
+        {
+            Title = "Son of Spergy",
+            Artist = "Daniel Caesar",
+            ReleaseYear = 2025,
+            Genre = Genre.RnB,
+            Quantity = 4
+        };
+
+        _context.Albums.Add(album);
+        _context.SaveChanges();
+        //Act
+        var result = _repository.DeleteAlbum(album.Id);
+        Assert.That(result, Is.True);
+
+    }
 }

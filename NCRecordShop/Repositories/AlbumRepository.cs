@@ -35,7 +35,9 @@ namespace NCRecordShop.Repositories
         }
        public bool DeleteAlbum(int id)
         {
-            throw new NotImplementedException();
+            var currAlbum = GetAlbumById(id);
+            _context.Albums.Remove(currAlbum);
+            return true;
         }
     }
 }
