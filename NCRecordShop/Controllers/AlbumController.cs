@@ -22,22 +22,26 @@ namespace NCRecordShop.Controllers
         [HttpGet("{id}")]
         public IActionResult GetAlbumById(int id)
         {
-            throw new NotImplementedException();
+            var albumById = _service.GetAlbumById(id);
+            return Ok(albumById);
         }
         [HttpPost]
         public IActionResult AddAlbum(Album album)
         {
-            throw new NotImplementedException();
+            var newAlbum = _service.AddAlbum(album);
+            return CreatedAtAction(nameof(GetAlbumById), new { newAlbum.Id, newAlbum });
         }
         [HttpPut("{id}")]
         public IActionResult UpdateAlbum(int id, Album album)
         {
-            throw new NotImplementedException();
+            var updateAlbum = _service.UpdateAlbum(id, album);
+            return Ok(UpdateAlbum);
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteAlbum(int id)
         {
-            throw new NotImplementedException();
+            var deletedAlbum = _service.DeleteAlbum(id);
+            return NoContent();
         }
     }
 }
