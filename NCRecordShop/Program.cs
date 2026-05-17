@@ -21,7 +21,7 @@ namespace NCRecordShop
             var useInMemory = builder.Configuration.GetValue<bool>("UseInMemoryDatabase");
             if(useInMemory)
             {
-                builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(builder.Configuration.GetConnectionString("RecordShopM")));
+                builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("RecordShopDb"));
             }
             else
             {
@@ -30,7 +30,7 @@ namespace NCRecordShop
 
             builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
             builder.Services.AddScoped<IAlbumServices, AlbumServices>();
-
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

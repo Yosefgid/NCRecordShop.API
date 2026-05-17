@@ -20,7 +20,7 @@ public class AlbumControllerTests
     }
 
     [Test]
-    public void GetAll_Albums_Returns_OK()
+    public void GetAll_Albums_Returns_OK_WithData()
     {
         //arrange
         var album = new List<Album>
@@ -39,14 +39,15 @@ public class AlbumControllerTests
 
 
         //act
-        var result = _controller.GetAllAlbum();
+        var result = _controller.GetAllAlbum() as OkObjectResult;
         //assert
-        Assert.That(result, Is.InstanceOf<OkObjectResult>());
+        Assert.That(result.StatusCode, Is.EqualTo(200));
+        Assert.That(result.Value, Is.EqualTo(album));
 
 
     }
     [Test]
-    public void GetAllAlbums_By_Id_Returns_OkResult()
+    public void GetAllAlbums_By_Id_Returns_OkResult_WithCorrectAlbum()
     {
         var album = new Album
         {
@@ -61,8 +62,9 @@ public class AlbumControllerTests
 
         _mockServices.Setup(s => s.GetAlbumById(1)).Returns(album);
 
-        var result = _controller.GetAlbumById(1);
-        Assert.That(result, Is.InstanceOf<OkObjectResult>());
+        var result = _controller.GetAlbumById(1) as OkObjectResult;
+        Assert.That(result.StatusCode, Is.EqualTo(200));
+        Assert.That(result.Value, Is.EqualTo(album));
     }
 
     [Test]
@@ -81,14 +83,15 @@ public class AlbumControllerTests
 
         _mockServices.Setup(s => s.AddAlbum(album)).Returns(album);
 
-        var result = _controller.AddAlbum(album);
-
-        Assert.That(result, Is.InstanceOf<CreatedAtActionResult>());
+        var result = _controller.AddAlbum(album) as CreatedAtActionResult;
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result.StatusCode, Is.EqualTo(201));
+        Assert.That(result.Value, Is.EqualTo(album));
 
 
     }
     [Test]
-    public void UpdateAlbum_Returns_OkResult()
+    public void UpdateAlbum_Returns_OkResult_withUpdatedAlbum()
     {
         var album = new Album
         {
@@ -103,15 +106,16 @@ public class AlbumControllerTests
 
         _mockServices.Setup(s => s.UpdateAlbum(1, album)).Returns(album);
 
-        var result = _controller.UpdateAlbum(1, album);
-
-        Assert.That(result, Is.InstanceOf<OkObjectResult>());
+        var result = _controller.UpdateAlbum(1, album) as OkObjectResult;
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result.StatusCode, Is.EqualTo(200));
+        Assert.That(result.Value, Is.EqualTo(album));
 
 
     }
 
     [Test]
-    public void Delete_Album_Returns_NoContent()
+    public void Delete_Album_Returns_NoContentResult()
     {
         var album = new Album
         {
@@ -126,9 +130,9 @@ public class AlbumControllerTests
 
         _mockServices.Setup(s => s.DeleteAlbum(1)).Returns(true);
 
-        var result = _controller.DeleteAlbum(1);
+        var result = _controller.DeleteAlbum(1) as NoContentResult;
 
-        Assert.That(result, Is.InstanceOf<NoContentResult>());
+        Assert.That(result.StatusCode, Is.EqualTo(204));
 
 
     }
