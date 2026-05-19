@@ -1,0 +1,72 @@
+﻿@using NCRecordShop.Blazor.Models
+<ul>
+    @foreach(var album in Albums)
+    {
+        <li>
+            <RecordsSummary Album="album"/>
+
+        </li>
+    }
+</ul>
+
+@code {
+
+    private List<Album> Albums { get; set;  } = new()
+    {
+        new Album
+        {
+            Id = 1, Title = "The Miseducation of Lauryn Hill",
+            Artist = "Lauryn Hill", ReleaseYear = 1998,
+            Genre = "Hip-Hop/ R&B", Quantity = 10
+        },
+         new Album
+        {
+            Id = 2, Title = "Thriller", Artist = "Michael Jackson",
+            ReleaseYear = 1982, Genre = "Pop", Quantity = 15
+        },
+        new Album
+        {
+            Id = 3, Title = "Abbey Road", Artist = "The Beatles",
+            ReleaseYear = 1969,Genre = "Rock", Quantity = 8
+        },
+        new Album
+        {
+            Id = 4, Title = "Purple Rain", Artist = "Prince & The Revolution",
+            ReleaseYear = 1984, Genre = "Rock / Pop",Quantity = 7
+        },
+        new Album
+        {
+            Id = 5,  Title = "Blonde", Artist = "Frank Ocean",
+            ReleaseYear = 2016, Genre = "R&B", Quantity = 12
+        },
+        new Album
+        {
+            Id = 6, Title = "Songs in the Key of Life",
+            Artist = "Stevie Wonder", ReleaseYear = 1976,
+            Genre = "Soul", Quantity = 9
+        },
+        new Album
+        {
+            Id = 7, Title = "good kid, m.A.A.d city",Artist = "Kendrick Lamar",
+            ReleaseYear = 2012, Genre = "Hip-Hop", Quantity = 11
+        },
+        new Album
+        {
+            Id = 8, Title = "Back to Black",  Artist = "Amy Winehouse",
+            ReleaseYear = 2006, Genre = "Soul / R&B", Quantity = 6
+        },
+        new Album
+        {
+            Id = 9,  Title = "Nevermind", Artist = "Nirvana",
+            ReleaseYear = 1991,  Genre = "Grunge / Rock", Quantity = 5
+        },
+        new Album
+        {
+            Id = 10, Title = "Ok Computer", Artist ="RadioHead",
+            ReleaseYear = 1997, 
+            Genre = "Alternative Rock",  Quantity = 14
+        }
+        };
+
+
+}

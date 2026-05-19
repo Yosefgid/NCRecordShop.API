@@ -1,0 +1,14 @@
+﻿@using NCRecordShop.Blazor.Models
+<div class="record-summary">
+    <h3>@Album.Title</h3>
+    <p>@Album.Artist</p>
+    <p>@Album.ReleaseYear</p>
+    <p>@Album.Genre</p>
+    <p>In Stock: @Album.Quantity</p>
+</div>
+
+@code {
+    [Parameter]
+    public Album Album { get; set; } = new (){ };
+
+}
