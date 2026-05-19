@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NCRecordShop.Data;
 using NCRecordShop.Repositories;
 using NCRecordShop.Services;
+using System.Text.Json.Serialization;
 namespace NCRecordShop
 {
     public class Program
@@ -12,7 +13,8 @@ namespace NCRecordShop
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -46,6 +48,14 @@ namespace NCRecordShop
 
 
             app.MapControllers();
+
+            //seed data here
+            //Temporay scope 
+            using(var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                SeedData.Initialize(context);
+            }
 
             app.Run();
         }
