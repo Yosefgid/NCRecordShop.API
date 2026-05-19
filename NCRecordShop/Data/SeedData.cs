@@ -28,7 +28,7 @@ namespace NCRecordShop.Data
             },
             new Album
             {
-                Id = 4,
+                
                 Title = "Purple Rain",
                 Artist = "Prince & The Revolution",
                 ReleaseYear = 1984,
@@ -38,7 +38,6 @@ namespace NCRecordShop.Data
             },
             new Album
             {
-                Id = 5,
                 Title = "Blonde",
                 Artist = "Frank Ocean",
                 ReleaseYear = 2016,
